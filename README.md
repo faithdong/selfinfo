@@ -1,0 +1,2 @@
+# selfinfo
+react-native 
