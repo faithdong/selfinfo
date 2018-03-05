@@ -2,7 +2,7 @@
  * @Author: zhongxd 
  * @Date: 2018-02-01 15:37:11 
  * @Last Modified by: zhongxd
- * @Last Modified time: 2018-02-01 15:50:57
+ * @Last Modified time: 2018-03-05 23:39:55
  */
 
 
@@ -38,15 +38,12 @@ export default class MainVC extends React.Component {
                 {
                     key: "A",
                     title:'办公',
-                    data: [{ name: '外勤签到', img: Images.oaWQQD,key:1}]
-                    //data: [{ name: '外勤签到', img: Images.oaWQQD},{name:'审批',img:Images.oaSP},{name:'日志',img:Images.oaRZ},{name:'日志',img:Images.oaRZ},{name:'日志',img:Images.oaRZ}]
-
+                    data: [{ name: '外勤签到', img: Images.oaWQQD,key:1},{ name: '外勤签到', img: Images.oaWQQD,key:2},{ name: '外勤签到', img: Images.oaWQQD,key:3}]
                 },
                 {
                     key: "C",
                     title:'营销',
-                    //data:[]
-                    data: [{ name: '考勤打卡', img: Images.oaKQDK,key:2}]
+                    data: [{ name: '考勤打卡', img: Images.oaKQDK,key:4}]
 
                 },
             ],
@@ -67,57 +64,29 @@ export default class MainVC extends React.Component {
         tabBarLabel: '首页',
         tabBarIcon: <Image source={homeImages} />
     };
-    /* _renderSectionHeader = ({ section }) => (
+    itemClick=(item) =>{
+        debugger;
+        console.log(item);
+    };
+     _renderSectionHeader = ({ section }) => (
         <View>
             <Text style={styles.viewItemHeader}>{section.title}</Text>
             <FlatList
                 data={section.data}
                 style={styles.flastList}
-                numColumns={24}
+                numColumns={4}
                 renderItem={({ item }) =>
-                 <TouchableOpacity onPress={item.onPress}>
-                     <View style={styles.viewRow}>
+                 <TouchableOpacity onPress={() => {this.itemClick(item)}}>
+                     <View style={styles.viewRow}>  
                          <Image source={item.img} style={styles.imageItem} />
                          <Text style={styles.textItem}>{item.name}</Text>
                      </View>
-                 </TouchableOpacity>
-             }
-                keyExtractor={(item, index) => { item.name }}
+                 </TouchableOpacity>}
             />
         </View>
-    ); */
-    _renderFlatListItem = ({ sections }) => (
-        <TouchableOpacity onPress={item.onPress}>
-            <View style={styles.viewRow}>
-                <Image source={item.img} style={styles.imageItem} />
-                <Text style={styles.textItem}>{item.name}</Text>
-            </View>
-        </TouchableOpacity>
-    );
-    _renderItem = ({ section}) => (
-        <View  style={styles.list}>
-            {
-                section.data.map((item, i) => this.renderExpenseItem(section.data, i))
-            }
-        </View>
-    );
-    renderExpenseItem(section, i) {
-        return <TouchableOpacity key={i} onPress={() => this._pressRow(section)} underlayColor="transparent">
-            <View style={styles.row}>
-                <Image source={section[i].img}  />
-                <Text >{section.name}</Text>
-            </View>
-        </TouchableOpacity>;
-    }
-    _renderSectionHeader = ({ section }) => (
-        <View style={{ flex: 1, height: 25 }}>
-            <Text style={styles.sectionHeader} >{section.title}</Text>
-        </View>
-    );
-    _pressRow(item) {
-        //this.props.navigator.pushTo(item.go)
-        console.log(item);
-    }; 
+    ); 
+    _renderItem = ({ info }) => null;
+
     render() {
         const { navigate } = this.props.navigation;
         return (
@@ -189,6 +158,35 @@ const styles = StyleSheet.create({
         marginBottom: 10,
         alignSelf: 'center',
     },
+    viewItemHeader: {
+        flex: 1,
+        backgroundColor: '#eeeeee',
+        alignItems: 'center',
+        paddingLeft: 20,
+        paddingTop: 5,
+        paddingBottom: 5,
+    },
+   
+    viewRow: {
+        // flexDirection: 'row',//设置横向布局 
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: ScreenWidth / 4,
+        padding: 10,
+    },
+   
+    imageItem: {
+        height: 40,
+        width: 40,
+    },
+   
+    textItem: {
+        textAlignVertical: 'center',
+        color: '#5C5C5C',
+        fontSize: 12,
+    },
+   
+   
 });
 
 
