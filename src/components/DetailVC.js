@@ -81,6 +81,7 @@ export default class DetailVC extends Component {
         // 查询所有数据
         debugger;
         let persons = realm.objects('Person');
+        alert('name:' + persons[0].name + 'city:' + persons[0].city);
         console.log('name:' + persons[0].name + 'city:' + persons[0].city);
         console.log(persons);
     };

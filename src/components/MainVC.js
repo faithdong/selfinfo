@@ -18,7 +18,8 @@ import {
     SectionList,
     FlatList,
     RefreshControl,
-    ScrollView
+    ScrollView,
+    Button
 } from 'react-native';
 import Images from '../images/ImageList'
 
@@ -37,13 +38,16 @@ export default class MainVC extends React.Component {
             sectListDataSource_row: [
                 {
                     key: "A",
-                    title:'办公',
-                    data: [{ name: '外勤签到', img: Images.oaWQQD,key:1},{ name: '外勤签到', img: Images.oaWQQD,key:2},{ name: '外勤签到', img: Images.oaWQQD,key:3}]
+                    title:'社保卡公积金',
+                    data: [{ name: '成都社保卡', img: Images.oaWQQD,key:1},
+                        { name: '上海社保卡', img: Images.oaWQQD,key:2},
+                        { name: '成都公积金', img: Images.oaWQQD,key:3},
+                        { name: '上海公积金', img: Images.oaWQQD,key:4}]
                 },
                 {
-                    key: "C",
-                    title:'营销',
-                    data: [{ name: '考勤打卡', img: Images.oaKQDK,key:4}]
+                    key: "B",
+                    title:'保险',
+                    data: [{ name: '车险', img: Images.oaKQDK,key:5},{ name: '中宏保险', img: Images.oaKQDK,key:6}]
 
                 },
             ],
@@ -61,12 +65,27 @@ export default class MainVC extends React.Component {
         headerTitleStyle: {
             alignSelf: 'center'
         },
-        tabBarLabel: '首页',
+        tabBarLabel: '重要',
         tabBarIcon: <Image source={homeImages} />
     };
     itemClick=(item) =>{
         debugger;
         console.log(item);
+    };
+    getColor(){
+         //定义字符串变量colorValue存放可以构成十六进制颜色值的值
+         var colorValue="0,1,2,3,4,5,6,7,8,9,a,b,c,d,e,f";
+         //以","为分隔符，将colorValue字符串分割为字符数组["0","1",...,"f"]
+         var colorArray = colorValue.split(",");
+          var color="#";//定义一个存放十六进制颜色值的字符串变量，先将#存放进去
+           //使用for循环语句生成剩余的六位十六进制值
+          for(var i=0;i<6;i++){
+               //colorArray[Math.floor(Math.random()*16)]随机取出
+              // 由16个元素组成的colorArray的某一个值，然后将其加在color中，
+              //字符串相加后，得出的仍是字符串
+               color+=colorArray[Math.floor(Math.random()*16)];
+          }
+          return color;
     };
      _renderSectionHeader = ({ section }) => (
         <View>
@@ -74,12 +93,17 @@ export default class MainVC extends React.Component {
             <FlatList
                 data={section.data}
                 style={styles.flastList}
-                numColumns={4}
+                numColumns={3}
                 renderItem={({ item }) =>
                  <TouchableOpacity onPress={() => {this.itemClick(item)}}>
                      <View style={styles.viewRow}>  
-                         <Image source={item.img} style={styles.imageItem} />
-                         <Text style={styles.textItem}>{item.name}</Text>
+                        {/*  <Image source={item.img} style={styles.imageItem}/>
+                         <Text style={styles.textItem}>{item.name}</Text> */}
+                         <Button
+                            title="Learn More"
+                            color={this.getColor()}
+                            accessibilityLabel={item.name}
+                            />
                      </View>
                  </TouchableOpacity>}
             />
@@ -171,7 +195,7 @@ const styles = StyleSheet.create({
         // flexDirection: 'row',//设置横向布局 
         justifyContent: 'center',
         alignItems: 'center',
-        width: ScreenWidth / 4,
+        width: ScreenWidth / 3,
         padding: 10,
     },
    

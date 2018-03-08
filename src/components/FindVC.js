@@ -18,7 +18,7 @@ import { StackNavigator, TabBarBottom, TabNavigator } from "react-navigation"
 export default class FindVC extends Component {
     static navigationOptions = {
         headerTitle: '发现',
-        tabBarLabel: '发现',
+        tabBarLabel: '娱乐',
         tabBarIcon: <View style={{ height: 30, width: 30, backgroundColor: 'red' }}></View>
     };
     componentDidMount() {
