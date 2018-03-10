@@ -28,7 +28,7 @@ export default class FindVC extends Component {
         // Decrypt
         var bytes = CryptoJS.AES.decrypt(ciphertext.toString(), 'secret key 123');
         var plaintext = bytes.toString(CryptoJS.enc.Utf8);
-        alert("解密后：" + plaintext);
+        //alert("解密后：" + plaintext);
         console.log(plaintext);
     };
     render() {

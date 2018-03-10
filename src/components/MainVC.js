@@ -2,7 +2,7 @@
  * @Author: zhongxd 
  * @Date: 2018-02-01 15:37:11 
  * @Last Modified by: zhongxd
- * @Last Modified time: 2018-03-05 23:39:55
+ * @Last Modified time: 2018-03-10 14:58:09
  */
 
 
@@ -19,7 +19,8 @@ import {
     FlatList,
     RefreshControl,
     ScrollView,
-    Button
+    Button,
+    Icon
 } from 'react-native';
 import Images from '../images/ImageList'
 
@@ -28,6 +29,7 @@ let Dimensions = require('Dimensions');//获取屏幕的宽高
 let ScreenWidth = Dimensions.get('window').width;
 let ScreenHeight = Dimensions.get('window').height;
 let homeImages = require('../images/icon_contacts_line_light.png');
+let addImages = require('../images/icon_right_add.png');
 
 
 export default class MainVC extends React.Component {
@@ -52,21 +54,32 @@ export default class MainVC extends React.Component {
                 },
             ],
             isLoading: true,
-        }
+        };
+        
     }
 
     componentDidMount() {
         console.log("Component挂载完毕后调用");
-    }
+        this.props.navigation.setParams({navigatePress:this.headerRightTest})
+    };
 
-    static navigationOptions = {
+    static navigationOptions = ({navigation, screenProps}) => ({
         headerTitle: '首页',//对页面的配置
         headerTintColor: '#393939',
+        headerRight:(
+            <Text  onPress={()=>navigation.state.params.navigatePress()} style={{ width:30, textAlign:"center"}} >  
+                <Image  source={addImages} size={24} />  
+            </Text>  
+        ),
         headerTitleStyle: {
             alignSelf: 'center'
         },
         tabBarLabel: '重要',
-        tabBarIcon: <Image source={homeImages} />
+        tabBarIcon: <Image source={homeImages} /> 
+    });
+    headerRightTest = ()=>{
+        let {navigate} = this.props.navigation;
+        navigate('AddsVC', { title: '新增', des: '我是返回点击我' });
     };
     itemClick=(item) =>{
         debugger;
