@@ -20,7 +20,9 @@ import {
     RefreshControl,
     ScrollView,
     Button,
-    Icon
+    Icon,
+    TextInput,
+    Platform
 } from 'react-native';
 import EditView from './EditView';
 import LoginButton from './LoginButton';
@@ -39,7 +41,7 @@ export default class AddsVC extends React.Component {
     };
 
     render() {
-        return(
+        return (
             <View style={LoginStyles.loginview}>
                 <View style={{
                     flexDirection: 'row', height: 100, marginTop: 1,
@@ -48,13 +50,15 @@ export default class AddsVC extends React.Component {
                 }}>
                     <Image source={homeImages} />
                 </View>
-                <View style={{ marginTop: 80 }}>
-                    <EditView name='输入用户名/注册手机号' onChangeText={(text) => {
+                <View style={{ marginTop: 10 }}>
+                   {/*  <EditView name='输入用户名/注册手机号' onChangeText={(text) => {
                         this.userName = text;
                     }} />
                     <EditView name='输入密码' onChangeText={(text) => {
                         this.password = text;
-                    }} />
+                    }} /> */}
+                    <TextInput placeholder='输入用户名/注册手机号' style={LoginStyles.TextInput}></TextInput>
+                    <TextInput placeholder='输入密码' style={LoginStyles.TextInput} secureTextEntry={true}></TextInput>
                     <LoginButton name='登录' onPressCallback={this.onPressCallback} />
                     <Text style={{ color: "#4A90E2", textAlign: 'center', marginTop: 10 }} >忘记密码？</Text>
                 </View>
@@ -69,5 +73,21 @@ const LoginStyles = StyleSheet.create({
         flex: 1,
         padding: 30,
         backgroundColor: '#ffffff',
+    },
+    TextInputView: {
+        marginTop: 10,
+        height: 50,
+        backgroundColor: '#ffffff',
+        borderRadius: 5,
+        borderWidth: 0.3,
+        borderColor: '#000000',
+        flexDirection: 'column',
+        justifyContent: 'center',
+    },
+    TextInput: {
+        backgroundColor: '#ffffff',
+        height: 45,
+        margin: 18,
+        marginTop: Platform.OS === 'ios' ? 4 : 8,
     },
 });
