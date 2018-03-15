@@ -2,7 +2,7 @@
  * @Author: zhongxd 
  * @Date: 2018-02-01 15:40:34 
  * @Last Modified by: zhongxd
- * @Last Modified time: 2018-02-01 15:40:56
+ * @Last Modified time: 2018-03-16 00:45:46
  */
 import React, { Component } from 'react';
 import {
@@ -17,8 +17,9 @@ import {
     TouchableWithoutFeedback,
     ScrollView
 } from 'react-native';
+import RealmDB from './RealmDB' 
 
-const Realm = require('realm');
+/* const Realm = require('realm');
 // 新建表模型
 const PersonSchema = {
     name: 'Person',
@@ -32,7 +33,7 @@ const PersonSchema = {
 };
 //初始化Realm
 let realm = new Realm({ schema: [PersonSchema] });
-
+ */
 
 export default class DetailVC extends Component {
     //接收上一个页面传过来的title显示出来
@@ -61,13 +62,23 @@ export default class DetailVC extends Component {
         alert('点击了按钮');
     };
     createData() {
-        realm.write(() => {
+        /* realm.write(() => {
             realm.create('Person', { id: 0, name: '吉泽明步', tel_number: '137xxxxxxxx', city: 'xx省xx市xxxxxx' });
             realm.create('Person', { id: 1, name: '苍井空', tel_number: '137xxxxxxxx', city: 'xx省xx市xxxxxx' });
             realm.create('Person', { id: 2, name: '小泽玛利亚', tel_number: '137xxxxxxxx', city: 'xx省xx市xxxxxx' });
             realm.create('Person', { id: 3, name: '皮皮虾我们走', tel_number: '137xxxxxxxx', city: 'xx省xx市xxxxxx' });
             realm.create('Person', { id: 4, name: '波多野结衣', tel_number: '137xxxxxxxx', city: 'xx省xx市xxxxxx' });
-        })
+        }); */
+        /* console.log(RealmDB.defaultPath);
+        RealmDB.open({schema:[AccountInfoSchema]}).then(realmDB => {
+            realmDB.write( () => {
+                realmDB.create('AccountInfo',{account_name:'百度',login_name_one:'faithdong',login_name_two:'zhongxd',login_pwd:'123'});
+            });
+            realmDB.close();
+        }) */
+        RealmDB.write( () => {
+            RealmDB.create('AccountInfo',{account_name:'ceshi',login_name_one:'faithdong',login_name_two:'zhongxd',login_pwd:'123'});
+        });
     };
     delData() {
         realm.write(() => {

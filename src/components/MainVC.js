@@ -2,7 +2,7 @@
  * @Author: zhongxd 
  * @Date: 2018-02-01 15:37:11 
  * @Last Modified by: zhongxd
- * @Last Modified time: 2018-03-10 14:58:09
+ * @Last Modified time: 2018-03-15 22:01:58
  */
 
 
@@ -116,7 +116,7 @@ export default class MainVC extends React.Component {
                             title="Learn More"
                             color={this.getColor()}
                             accessibilityLabel={item.name}
-                            />
+                            onPress={() => console.log(section.title)}/>
                      </View>
                  </TouchableOpacity>}
             />
