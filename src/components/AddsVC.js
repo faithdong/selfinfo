@@ -2,7 +2,7 @@
  * @Author: zhongxd 
  * @Date: 2018-03-10 14:28:14 
  * @Last Modified by: zhongxd
- * @Last Modified time: 2018-03-16 00:52:21
+ * @Last Modified time: 2018-03-16 17:53:29
  * 新增
  */
 
@@ -27,10 +27,12 @@ import {
 } from 'react-native';
 import EditView from './EditView';
 import LoginButton from './LoginButton';
-import RealmDB from './RealmDB' 
+import RealmDB from './RealmDB';
+import CryptoJS from 'crypto-js';
+import Utils from './Utils';
 
 let homeImages = require('../images/icon_contacts_line_light.png');
-//const Realm = require('realm');
+
 
 export default class AddsVC extends React.Component {
     constructor(props) {
@@ -45,24 +47,29 @@ export default class AddsVC extends React.Component {
     };
     
     saveData = () =>{
+        console.log(Utils.UUID());
+        return;
         console.log(this.state.account_name);
         console.log(this.state.login_name_one);
         console.log(this.state.login_name_two);
         console.log(this.state.login_pwd);
-        /* RealmDB.open({paht:RealmDB.defaultPath,schema:[AccountInfo]}).then(realm => {
-            let persons = realm.objects('AccountInfo');
-            console.log('name:' + persons[0].account_name + 'city:' + persons[0].login_name_one);
-            realm.close();
-        }) .catch(error => {
-           console.log(error);
-        }); */
-        let persons = RealmDB.objects('AccountInfo');
-        for(let item of persons){
-            console.log(item.account_name + '-----' + item.login_name_one + '-----' + item.login_name_two + '----' + item.login_pwd);
-        }
-        console.log('name:' + persons[0].account_name + 'city:' + persons[0].login_name_one);
-        
-    }
+        // Encrypt
+        let encryptLoginPwd = CryptoJS.AES.encrypt(this.state.login_pwd, 'secret key zhongxd');
+        let login_pwd = encryptLoginPwd.toString();
+        RealmDB.write(()=>{
+            RealmDB.create(
+                'AccountInfo',
+                {
+                    account_name:this.state.account_name,
+                    login_name_one:this.state.login_name_one,
+                    login_name_two:this.state.login_name_two,
+                    login_pwd:login_pwd
+                }
+            );
+            let AccountInfos = RealmDB.objects('AccountInfo');
+            RealmDB.deleteAll();
+        })
+    };
     render() {
         return (
             <KeyboardAvoidingView behavior='position'>

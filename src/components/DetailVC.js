@@ -2,7 +2,7 @@
  * @Author: zhongxd 
  * @Date: 2018-02-01 15:40:34 
  * @Last Modified by: zhongxd
- * @Last Modified time: 2018-03-16 00:45:46
+ * @Last Modified time: 2018-03-16 17:52:49
  */
 import React, { Component } from 'react';
 import {
@@ -17,8 +17,10 @@ import {
     TouchableWithoutFeedback,
     ScrollView
 } from 'react-native';
-import RealmDB from './RealmDB' 
+import RealmDB from './RealmDB';
+//import realm from 'realm';
 
+const Realm = require('realm');
 /* const Realm = require('realm');
 // 新建表模型
 const PersonSchema = {
@@ -76,25 +78,36 @@ export default class DetailVC extends Component {
             });
             realmDB.close();
         }) */
-        RealmDB.write( () => {
+       /*  RealmDB.write( () => {
             RealmDB.create('AccountInfo',{account_name:'ceshi',login_name_one:'faithdong',login_name_two:'zhongxd',login_pwd:'123'});
-        });
+        }); */
     };
     delData() {
-        realm.write(() => {
+        /* realm.write(() => {
             // 获取Person对象
             let Persons = realm.objects('Person');
             // 删除
             realm.delete(Persons);
-        })
+        }); */
+       /*  RealmDB.write(() => {
+            // 获取Person对象
+            //let AccountInfos = RealmDB.objects('AccountInfo');
+            // 删除
+            //RealmDB.delete('Person');
+        }); */
+        //Realm.deleteModel('AccountInfo');
+        Realm.deleteAll();
     };
     qryAllData() {
         // 查询所有数据
         debugger;
-        let persons = realm.objects('Person');
-        alert('name:' + persons[0].name + 'city:' + persons[0].city);
+        /* let persons = realm.objects('Person');
         console.log('name:' + persons[0].name + 'city:' + persons[0].city);
-        console.log(persons);
+        console.log(persons); */
+        let persons = RealmDB.objects('AccountInfo');
+        for(let item of persons){
+            console.log(item.account_name + '-----' + item.login_name_one + '-----' + item.login_name_two + '----' + item.login_pwd);
+        }
     };
     contdionData() {
         // 获取Person对象

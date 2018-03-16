@@ -25,8 +25,10 @@ export default class FindVC extends Component {
         // Encrypt
         var ciphertext = CryptoJS.AES.encrypt('my message', 'secret key 123');
         console.log(ciphertext);
+        var encryptedBase64Str = ciphertext.toString();
+        console.log(encryptedBase64Str);
         // Decrypt
-        var bytes = CryptoJS.AES.decrypt(ciphertext.toString(), 'secret key 123');
+        var bytes = CryptoJS.AES.decrypt(encryptedBase64Str, 'secret key 123');
         var plaintext = bytes.toString(CryptoJS.enc.Utf8);
         //alert("解密后：" + plaintext);
         console.log(plaintext);

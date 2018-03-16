@@ -2,7 +2,7 @@
  * @Author: zhongxd 
  * @Date: 2018-02-01 15:37:11 
  * @Last Modified by: zhongxd
- * @Last Modified time: 2018-03-15 22:01:58
+ * @Last Modified time: 2018-03-16 16:35:44
  */
 
 
@@ -22,7 +22,8 @@ import {
     Button,
     Icon
 } from 'react-native';
-import Images from '../images/ImageList'
+import Images from '../images/ImageList';
+import RealmDB from './RealmDB';
 
 
 let Dimensions = require('Dimensions');//获取屏幕的宽高
@@ -60,7 +61,9 @@ export default class MainVC extends React.Component {
 
     componentDidMount() {
         console.log("Component挂载完毕后调用");
-        this.props.navigation.setParams({navigatePress:this.headerRightTest})
+        this.props.navigation.setParams({navigatePress:this.headerRightTest});
+        
+       
     };
 
     static navigationOptions = ({navigation, screenProps}) => ({
