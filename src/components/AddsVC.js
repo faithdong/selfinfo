@@ -47,8 +47,6 @@ export default class AddsVC extends React.Component {
     };
     
     saveData = () =>{
-        console.log(Utils.UUID());
-        return;
         console.log(this.state.account_name);
         console.log(this.state.login_name_one);
         console.log(this.state.login_name_two);
@@ -60,14 +58,14 @@ export default class AddsVC extends React.Component {
             RealmDB.create(
                 'AccountInfo',
                 {
+                    id:Utils.UUID(),
                     account_name:this.state.account_name,
                     login_name_one:this.state.login_name_one,
                     login_name_two:this.state.login_name_two,
                     login_pwd:login_pwd
                 }
             );
-            let AccountInfos = RealmDB.objects('AccountInfo');
-            RealmDB.deleteAll();
+            
         })
     };
     render() {

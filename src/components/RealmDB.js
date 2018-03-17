@@ -15,7 +15,9 @@ import Realm from 'realm';
 
  AccountInfoSchema.schema = {
     name: 'AccountInfo',
+    
     properties: {
+       
         account_name:'string',
         login_name_one:'string',
         login_name_two:'string',
@@ -24,3 +26,5 @@ import Realm from 'realm';
  };
 
  export default new Realm({schema: [AccountInfoSchema]});
+
+

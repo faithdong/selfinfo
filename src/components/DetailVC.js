@@ -96,7 +96,13 @@ export default class DetailVC extends Component {
             //RealmDB.delete('Person');
         }); */
         //Realm.deleteModel('AccountInfo');
-        Realm.deleteAll();
+        RealmDB.write( () => {
+            let AccountInfos = RealmDB.objects('AccountInfo');
+            for(let i=0;i<AccountInfos.length;i++){
+                RealmDB.delete(AccountInfos[i]);
+            }
+            RealmDB.delete(AccountInfos);
+        })
     };
     qryAllData() {
         // 查询所有数据
@@ -104,9 +110,11 @@ export default class DetailVC extends Component {
         /* let persons = realm.objects('Person');
         console.log('name:' + persons[0].name + 'city:' + persons[0].city);
         console.log(persons); */
+        console.log(RealmDB.compact());
         let persons = RealmDB.objects('AccountInfo');
+        console.log(persons.isValid());
         for(let item of persons){
-            console.log(item.account_name + '-----' + item.login_name_one + '-----' + item.login_name_two + '----' + item.login_pwd);
+            console.log(item.id + '-----' + item.account_name + '-----' + item.login_name_one + '-----' + item.login_name_two + '----' + item.login_pwd);
         }
     };
     contdionData() {
