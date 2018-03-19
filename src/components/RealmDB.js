@@ -15,9 +15,9 @@ import Realm from 'realm';
 
  AccountInfoSchema.schema = {
     name: 'AccountInfo',
-    
+    primayKey:'id',
     properties: {
-       
+        id:'string',
         account_name:'string',
         login_name_one:'string',
         login_name_two:'string',
