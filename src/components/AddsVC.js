@@ -96,8 +96,10 @@ export default class AddsVC extends React.Component {
                                     this.password = text;
                                 }} /> */}
                             <ModalDropdown options={['option 1', 'option 2']}
-                                    style={{width:200,border:1,borderColor:'#000000',backgroundColor:'#EE4000'}}
-                                    dropdownStyle={{border:1,borderColor:'#000000',height:200}}
+                                    style={{flex:1,margin:18,height:30}}
+                                    textStyle={{borderBottomWidth:1,borderColor:'#000000',fontSize:14,color:'#00000'}}
+                                    dropdownStyle={{width:200,border:1,borderColor:'#000000',fontSize:14,height:200,color:'red'}}
+                                    defaultValue='请选择分类'
                                  />
 
                             <TextInput placeholder='输入应用名称/网站名称'
