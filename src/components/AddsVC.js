@@ -1,10 +1,11 @@
 /*
  * @Author: zhongxd 
- * @Date: 2018-03-10 14:28:14 
+ * @Date: 2018-03-27 13:59:24 
  * @Last Modified by: zhongxd
- * @Last Modified time: 2018-03-16 17:53:29
+ * @Last Modified time: 2018-03-27 14:12:03
  * 新增
  */
+
 
 import React, { Component } from 'react';
 import {
@@ -41,12 +42,24 @@ export default class AddsVC extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            category:'',
             account_name: '',//应用名称、网站名称
             login_name_one: '',//第一登录名
             login_name_two: '',//第二登录名
-            login_pwd: ''//登录密码
+            login_pwd: '', //登录密码
+            categoryList:[
+                '效率工具类', //'efficiencyTools'
+                '音乐视频类', //'musicVideos',
+                '新闻门户类', //'newPortals',
+                '电商O2O类', //'onlineRetilers',
+                '银行类', //'banks',
+                '交通出行类', //'trafficTravels',
+                '通讯营业厅', //'communications',
+                '社交支付类',//'socialPays',
+                '阅读书籍类',//'readBooks',
+                '游戏类',//'games'
+            ]
         }
-
     };
 
     componentDidMount() {
@@ -55,10 +68,12 @@ export default class AddsVC extends React.Component {
 
    
     saveData = () => {
+        console.log(this.state.category);
         console.log(this.state.account_name);
         console.log(this.state.login_name_one);
         console.log(this.state.login_name_two);
         console.log(this.state.login_pwd);
+        return;
         // Encrypt
         let encryptLoginPwd = CryptoJS.AES.encrypt(this.state.login_pwd, 'secret key zhongxd');
         let login_pwd = encryptLoginPwd.toString();
@@ -67,6 +82,7 @@ export default class AddsVC extends React.Component {
                 'AccountInfo',
                 {
                     id: Utils.UUID(),
+                    category:this.state.category,
                     account_name: this.state.account_name,
                     login_name_one: this.state.login_name_one,
                     login_name_two: this.state.login_name_two,
@@ -89,19 +105,13 @@ export default class AddsVC extends React.Component {
                             <Image source={homeImages} style={{ width: 40, height: 40 }} />
                         </View>
                         <View style={{ marginTop: 5 }}>
-                            {/*  <EditView name='输入用户名/注册手机号' onChangeText={(text) => {
-                                    this.userName = text;
-                                }} />
-                                <EditView name='输入密码' onChangeText={(text) => {
-                                    this.password = text;
-                                }} /> */}
-                            <ModalDropdown options={['option 1', 'option 2']}
-                                    style={{flex:1,margin:18,height:30}}
-                                    textStyle={{borderBottomWidth:1,borderColor:'#000000',fontSize:14,color:'#00000'}}
-                                    dropdownStyle={{width:200,border:1,borderColor:'#000000',fontSize:14,height:200,color:'red'}}
-                                    defaultValue='请选择分类'
-                                 />
-
+                            <ModalDropdown options={this.state.categoryList}
+                                style={{flex:1,margin:18,height:30}}
+                                textStyle={{borderBottomWidth:1,borderColor:'#000000',fontSize:14,color:'#00000'}}
+                                dropdownStyle={{width:200,border:1,borderColor:'#000000',fontSize:14,height:200,color:'red'}}
+                                defaultValue='请选择分类'
+                                onSelect={(index,value)=>this.setState({category:value})}
+                            />
                             <TextInput placeholder='输入应用名称/网站名称'
                                 style={LoginStyles.TextInput}
                                 onChangeText={(account_name) => this.setState({ account_name })}
@@ -123,12 +133,11 @@ export default class AddsVC extends React.Component {
                                 onChangeText={(login_pwd) => this.setState({ login_pwd })}
                                 value={this.state.login_pwd}>
                             </TextInput>
-                            {/*  <LoginButton name='登录' onPressCallback={this.onPressCallback} /> */}
                             <TouchableOpacity style={LoginStyles.loginTextView}
                                 onPress={this.saveData}>
                                 <Text style={LoginStyles.loginText} >
                                     保存
-                                    </Text>
+                                </Text>
                             </TouchableOpacity>
                             <Text style={{ color: "#4A90E2", marginTop: 10 }} >提示：数据只保存到手机本地，不会访问网络</Text>
                         </View>

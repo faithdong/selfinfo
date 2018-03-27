@@ -18,6 +18,7 @@ import Realm from 'realm';
     primayKey:'id',
     properties: {
         id:'string',
+        category:'string',
         account_name:'string',
         login_name_one:'string',
         login_name_two:'string',

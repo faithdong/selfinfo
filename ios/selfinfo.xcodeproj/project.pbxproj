@@ -39,6 +39,7 @@
 		E8129A37F1DF4C3D83299445 /* libRealmReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F8D5470E86CC49E389917A02 /* libRealmReact.a */; };
 		8BF5C88B37204C1A858FF42C /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = CFDCBE150BF94E34877C9D8C /* libc++.tbd */; };
 		F449E4871E57409FB0FE69AA /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 61D1A6285BE64AB0A34DD1AC /* libz.tbd */; };
+		7526233DEEE044C4818CF0CE /* libRNCardView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 672BAFBFFBCF4D81B62C4A08 /* libRNCardView.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -292,6 +293,8 @@
 		F8D5470E86CC49E389917A02 /* libRealmReact.a */ = {isa = PBXFileReference; name = "libRealmReact.a"; path = "libRealmReact.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 		CFDCBE150BF94E34877C9D8C /* libc++.tbd */ = {isa = PBXFileReference; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = sourcecode.text-based-dylib-definition; explicitFileType = undefined; includeInIndex = 0; };
 		61D1A6285BE64AB0A34DD1AC /* libz.tbd */ = {isa = PBXFileReference; name = "libz.tbd"; path = "usr/lib/libz.tbd"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = sourcecode.text-based-dylib-definition; explicitFileType = undefined; includeInIndex = 0; };
+		914F47CE406E49CAA9E2592A /* RNCardView.xcodeproj */ = {isa = PBXFileReference; name = "RNCardView.xcodeproj"; path = "../node_modules/react-native-cardview/ios/RNCardView.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		672BAFBFFBCF4D81B62C4A08 /* libRNCardView.a */ = {isa = PBXFileReference; name = "libRNCardView.a"; path = "libRNCardView.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -323,6 +326,7 @@
 				E8129A37F1DF4C3D83299445 /* libRealmReact.a in Frameworks */,
 				8BF5C88B37204C1A858FF42C /* libc++.tbd in Frameworks */,
 				F449E4871E57409FB0FE69AA /* libz.tbd in Frameworks */,
+				7526233DEEE044C4818CF0CE /* libRNCardView.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -503,6 +507,7 @@
 				00C302DF1ABCB9EE00DB3ED1 /* RCTVibration.xcodeproj */,
 				139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */,
 				25E2F4F36474429180E7DDB4 /* RealmReact.xcodeproj */,
+				914F47CE406E49CAA9E2592A /* RNCardView.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -1074,6 +1079,11 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)\..\node_modules\react-native-cardview\ios",
 				);
 			};
 			name = Debug;
@@ -1095,6 +1105,11 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)\..\node_modules\react-native-cardview\ios",
 				);
 			};
 			name = Release;
@@ -1114,6 +1129,10 @@
 				);
 				PRODUCT_NAME = selfinfo;
 				VERSIONING_SYSTEM = "apple-generic";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)\..\node_modules\react-native-cardview\ios",
+				);
 			};
 			name = Debug;
 		};
@@ -1131,6 +1150,10 @@
 				);
 				PRODUCT_NAME = selfinfo;
 				VERSIONING_SYSTEM = "apple-generic";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)\..\node_modules\react-native-cardview\ios",
+				);
 			};
 			name = Release;
 		};
@@ -1160,6 +1183,11 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)\..\node_modules\react-native-cardview\ios",
 				);
 			};
 			name = Debug;
@@ -1190,6 +1218,11 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)\..\node_modules\react-native-cardview\ios",
 				);
 			};
 			name = Release;
@@ -1215,6 +1248,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 			};
 			name = Debug;
@@ -1239,6 +1273,7 @@
 				TVOS_DEPLOYMENT_TARGET = 10.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 			};
