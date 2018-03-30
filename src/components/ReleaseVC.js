@@ -2,7 +2,7 @@
  * @Author: zhongxd 
  * @Date: 2018-02-01 15:38:44 
  * @Last Modified by: zhongxd
- * @Last Modified time: 2018-03-27 16:33:34
+ * @Last Modified time: 2018-03-30 17:02:06
  */
 
 
@@ -20,8 +20,9 @@ import {
     FlatList,
     Button
 } from 'react-native';
-import CardView from 'react-native-cardview';
+//import {  Button } from 'native-base';
 import Utils from './Utils';
+import ListVC from './ListVC';
 let Dimensions = require('Dimensions');//获取屏幕的宽高
 let ScreenWidth = Dimensions.get('window').width;
 let ScreenHeight = Dimensions.get('window').height;
@@ -91,29 +92,22 @@ export default class ReleaseVC extends Component {
         tabBarIcon: <View style={{ height: 30, width: 30, backgroundColor: 'red' }}></View>
     };
     itemClick=(item)=>{
+        console.log('button')
         console.log(item);
+        const { navigate } = this.props.navigation;
+        //this.itemClick(item)
+        navigate('ListVC', { title: '列表'});
     };
-    _renderItem=(item)=>{
-        return (
-            <TouchableOpacity onPress={() => {this.itemClick(item)}}>
-                <View style={styles.viewRow}>
-                    {/* <Button
-                        title='learn more'
-                        color={Utils.getColor()}
-                        accessibilityLabel={item.key}
-                        onPress={() => console.log(item.key)}/> */}
-                    <CardView
-                            cardElevation={2}
-                            cardMaxElevation={2}
-                            cornerRadius={5}>
-                            <Text>
-                                item.title
-                            </Text>
-                    </CardView>
-                </View>
-            </TouchableOpacity>
-        )
-    }
+    _renderItem=({item})=>(
+        <TouchableOpacity onPress={()=>{console.log('TouchableOpacity')}}>
+            <View style={styles.viewRow}>
+                 <Button
+                    title={item.name}
+                    color={Utils.getColor()} 
+                    onPress={()=>{this.itemClick(item)}}/> 
+            </View>
+        </TouchableOpacity>
+    )
     render() {
         const { navigate } = this.props.navigation;
         return (
@@ -140,6 +134,11 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         width: ScreenWidth / 3,
         padding: 10,
+    },
+    textItem: {
+        textAlignVertical: 'center',
+        color: '#5C5C5C',
+        fontSize: 12,
     },
 });
 

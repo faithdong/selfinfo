@@ -19,6 +19,7 @@ import NewsVC from './src/components/NewsVC';
 import MineVC from './src/components/MineVC';
 import DetailVC from './src/components/DetailVC';
 import AddsVC from './src/components/AddsVC';
+import ListVC from './src/components/ListVC';
 
 
 // 通过TabNavigator做路由映射
@@ -65,7 +66,8 @@ const MainScreentNavigator = TabNavigator(
 const MyNavigatior = StackNavigator({
 	Main: { screen: MainScreentNavigator },
 	DetailVC: { screen: DetailVC },
-	AddsVC: { screen: AddsVC }
+	AddsVC: { screen: AddsVC },
+	ListVC:{screen:ListVC}
 });
 
 
