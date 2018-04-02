@@ -2,14 +2,14 @@
  * @Author: zhongxd 
  * @Date: 2018-03-30 10:28:14 
  * @Last Modified by: zhongxd
- * @Last Modified time: 2018-03-30 17:09:30
+ * @Last Modified time: 2018-04-03 00:52:49
  * 分类--小类列表
  */
 
 'use strict'
 
 import React from 'react';
-import { ScrollView, View, Text, FlatList, TouchableOpacity } from 'react-native';
+import { ScrollView, View, Text, FlatList, TouchableOpacity ,Alert } from 'react-native';
 import { Header, Content, Card, CardItem ,Body,Left,Right ,Col, Row, Grid  } from 'native-base';
 
 export default class ListVC extends React.Component {
@@ -35,24 +35,33 @@ export default class ListVC extends React.Component {
             { name: '蝙蝠侠大战超人' }]
         };
     };
+    viewPwd=({item,index})=>{
+        Alert.alert(
+            '查看',
+            item.name  + '-----' + index,
+            [
+                {text: '取消'},
+            ]
+          );
+    };
     _renderItem = ({ item, index }) => {
         return (
             <Card>
-                <CardItem header>
-                    <Text>NativeBase</Text>
+                <CardItem header style={{ backgroundColor: '#00CE9F',height:30}}>
+                    <Text >NativeBase</Text>
                 </CardItem>
                 <CardItem>
                     <Body>
                         <Grid>
                             <Col style={{ backgroundColor: '#635DB7'}}><Text>{item.name}</Text></Col>
-                            <Col style={{ backgroundColor: '#00CE9F'}}><Text>{item.name}</Text></Col>
+                            <Col style={{ backgroundColor: '#00CE9F'}}><Text onPress={()=>{this.viewPwd({item,index})}}>{item.name}</Text></Col>
                         </Grid>
                         <Text>{item.name}</Text>
                         <Text>{item.name}</Text>
                     </Body>
                 </CardItem>
-                <CardItem footer>
-                    <Text>GeekyAnts</Text>
+                <CardItem footer header style={{ backgroundColor: '#00CE9F',height:30}}>
+                    <Text >GeekyAnts</Text>
                 </CardItem>
             </Card>
         );
