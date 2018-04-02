@@ -6,44 +6,58 @@
  * 分类--小类列表
  */
 
- 'use strict'
+'use strict'
 
- import React from 'react';
- import {ScrollView,View,Text,FlatList,TouchableOpacity} from 'react-native';
- 
- export default class ListVC extends React.Component{
-     //接收上一个页面传过来的title显示出来
+import React from 'react';
+import { ScrollView, View, Text, FlatList, TouchableOpacity } from 'react-native';
+import { Header, Content, Card, CardItem ,Body,Left,Right ,Col, Row, Grid  } from 'native-base';
+
+export default class ListVC extends React.Component {
+    //接收上一个页面传过来的title显示出来
     static navigationOptions = ({ navigation }) => ({
         title: navigation.state.params.title
     });
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
-            cgyList:[{name: '大护法'},
-            {name: '绣春刀II：修罗战场'},
-            {name: '神偷奶爸3'},
-            {name: '神奇女侠'},
-            {name: '摔跤吧，爸爸'},
-            {name: '悟空传'},
-            {name: '闪光少女'},
-            {name: '攻壳机动队'},
-            {name: '速度与激情8'},
-            {name: '蝙蝠侠大战超人'},
-            {name: '攻壳机动队'},
-            {name: '速度与激情8'},
-            {name: '蝙蝠侠大战超人'}]
+            cgyList: [{ name: '大护法' },
+            { name: '绣春刀II：修罗战场' },
+            { name: '神偷奶爸3' },
+            { name: '神奇女侠' },
+            { name: '摔跤吧，爸爸' },
+            { name: '悟空传' },
+            { name: '闪光少女' },
+            { name: '攻壳机动队' },
+            { name: '速度与激情8' },
+            { name: '蝙蝠侠大战超人' },
+            { name: '攻壳机动队' },
+            { name: '速度与激情8' },
+            { name: '蝙蝠侠大战超人' }]
         };
     };
-    _renderItem = ({item, index}) => {
+    _renderItem = ({ item, index }) => {
         return (
-          <TouchableOpacity
-            activeOpacity={0.5}
-            >
-            <Text >{item.name}</Text>
-          </TouchableOpacity>
+            <Card>
+                <CardItem header>
+                    <Text>NativeBase</Text>
+                </CardItem>
+                <CardItem>
+                    <Body>
+                        <Grid>
+                            <Col style={{ backgroundColor: '#635DB7'}}><Text>{item.name}</Text></Col>
+                            <Col style={{ backgroundColor: '#00CE9F'}}><Text>{item.name}</Text></Col>
+                        </Grid>
+                        <Text>{item.name}</Text>
+                        <Text>{item.name}</Text>
+                    </Body>
+                </CardItem>
+                <CardItem footer>
+                    <Text>GeekyAnts</Text>
+                </CardItem>
+            </Card>
         );
     }
-    render(){
+    render() {
         return (
             <ScrollView>
                 <View>
@@ -54,7 +68,7 @@
                 </View>
             </ScrollView>
         )
-        
+
     }
 
- }
+}

@@ -26,6 +26,7 @@ import ListVC from './src/components/ListVC';
 const MainScreentNavigator = TabNavigator(
 	{
 		MainVC: { screen: MainVC },
+		AddsVC: { screen:AddsVC},
 		FindVC: { screen: FindVC },
 		ReleaseVC: { screen: ReleaseVC },
 		NewsVC: { screen: NewsVC },
